@@ -1,4 +1,5 @@
 import re
+from datetime import date
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.db_models import Base
@@ -39,7 +40,11 @@ def model2dict(model, session):
         elif len(column.foreign_keys) > 1:
             raise Exception("Can't handle more than one foreign key reference in a column!")
         else:
-            d[column.name] = getattr(model, column.name)
+            val = getattr(model, column.name)
+            if type(val) is date:
+                d[column.name] = val.isoformat()
+            else:
+                d[column.name] = val
 
     return d
 

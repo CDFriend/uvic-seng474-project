@@ -70,7 +70,7 @@ class DeathRecord(Base):
     # Grave site location
     Block = Column(String(1), nullable=False)
     Road = Column(String(5), nullable=False)
-    Row = Column(Integer, nullable=False)
+    Row = Column(String(5), nullable=False)
     Side = Column(String(1), nullable=False)
     FullPlot = Column(String(10), nullable=False)
 
